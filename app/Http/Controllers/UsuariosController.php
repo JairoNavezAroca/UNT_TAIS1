@@ -12,13 +12,14 @@ class UsuariosController extends Controller
 {
 	public function __construct()
 	{
+		 // si no estas logueado, te manda al login
 		$this->middleware('auth');
+		// si tu rol no es de administrador, te manda a la pagina principal
+		// si tu rol si es de administrador, te muestra la vista
+		$this->middleware('auth_admin');
 		//dd($_SERVER);
 	}
 	protected function vista(Request $request){
-		Log::log([
-			'descripcion' => 'Vista: Usuarios'
-		]);
 		return view("usuarios");
 	}
 	protected function listar(Request $request){

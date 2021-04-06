@@ -3,6 +3,15 @@
 		<div class="text-center">
 			<loader :mostrar="mostrarLoader"></loader>
 		</div>
+		<hr>
+		<button class="btn btn-danger" @click="restar(5)">disminuir</button>
+		<br>
+		<input type="text" class="form-control" v-model="numero">
+		<br>
+		<button class="btn btn-success" @click="sumar(10)">aumentar</button>
+		<br>
+		{{numero}}
+		<hr>
 		<div class="table-responsive">
 			<b-container fluid>
 				<b-row>
@@ -56,6 +65,7 @@
 export default {
 	data() {
 		return {
+			numero: 0,
 			items: [],
 			coleccionItems: [],
 			fields: [
@@ -84,6 +94,12 @@ export default {
 		}
 	},
 	methods: {
+		restar: function(item){
+			this.numero -= item;
+		},
+		sumar: function(item){
+			this.numero += item;
+		},
 		onFiltered(filteredItems) {
 			// Trigger pagination to update the number of buttons/pages due to filtering
 			this.totalRows = filteredItems.length;
